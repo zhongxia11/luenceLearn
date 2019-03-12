@@ -124,7 +124,7 @@ public class Indexer {
 
             String start_s = "<doc>";
             String end_s = "</doc>";
-            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(dataDir),"gbk"));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(dataDir),"utf-8"));
             String s;
             StringBuilder buffer = new StringBuilder();
             while((s=reader.readLine())!=null){
@@ -141,7 +141,7 @@ public class Indexer {
 
         public static void convert(String dataDir) throws Exception {
             BufferedWriter writer = new BufferedWriter(new FileWriter("d:\\news_tensite_xml3.dat"));
-            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(dataDir),"gbk"));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(dataDir),"utf-8"));
             String s;
             while((s=reader.readLine())!=null){
                 writer.write(s.replaceAll("&","&amp;")+"\r\n");
@@ -158,7 +158,7 @@ public class Indexer {
          * @param xml
          * @return document
          */
-        private Document getDocument(String xml) throws Exception {
+        public static  Document getDocument(String xml) throws Exception {
             long old = System.currentTimeMillis();
             //xml = xml.replaceAll("&","&amp;");
             Document doc = new Document();
@@ -211,7 +211,7 @@ public class Indexer {
             String dataDir = "d:\\lucene_add.txt";
             Indexer indexer = new Indexer(indexDir);*/
             //indexer.add(dataDir);
-            delete();
+            //delete();
 
             //索引指定的文档路径
            // String indexDir = "D:\\lucene\\dataindex";
@@ -243,14 +243,7 @@ public class Indexer {
             }
             //索引结束时间
             long end = System.currentTimeMillis();
-            System.out.println("索引：" + numIndexed + " 个文件 花费了" + (end - start) + " 毫秒");
-            */
-
-
-
-
-
-
+            System.out.println("索引：" + numIndexed + " 个文件 花费了" + (end - start) + " 毫秒");*/
         }
 
 
