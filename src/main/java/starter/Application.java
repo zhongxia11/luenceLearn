@@ -9,18 +9,20 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.orm.jpa.vendor.HibernateJpaSessionFactoryBean;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.filter.HttpPutFormContentFilter;
+import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
 //exclude={DataSourceAutoConfiguration.class,HibernateJpaAutoConfiguration.class}
 @SpringBootApplication()
 @ComponentScan({"com.lucene"})
-public class Application extends SpringBootServletInitializer {
+public class Application extends WebMvcConfigurationSupport {
 
 	private static Class<Application> applicationClass = Application.class;
 	
-	@Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(applicationClass);
-    }
+	//@Override
+    //protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+     //   return application.sources(applicationClass);
+   // }
 	
 	@Bean
 	public Filter initializeHttpPutHandler() {
@@ -45,5 +47,14 @@ public class Application extends SpringBootServletInitializer {
 			e.printStackTrace();
 		}
 	}
+
+
+	@Override
+	public void configurePathMatch(PathMatchConfigurer configurer) {
+		configurer.setUseSuffixPatternMatch(true)
+				.setUseTrailingSlashMatch(true);
+	}
+
+
 	
 }

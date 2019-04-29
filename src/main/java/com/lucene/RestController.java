@@ -20,7 +20,7 @@ public class RestController {
         return map;
     }
 
-    @GetMapping("/query/{value}")
+    @GetMapping("/query/{value:.+}")
     @ResponseBody
     public Object query(@PathVariable("value") String value, HttpServletResponse response) {
         Map<String,String> result = Maps.newHashMap();
